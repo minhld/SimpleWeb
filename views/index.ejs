@@ -1,3 +1,43 @@
 <% include header %>
-<h3>Main Page</h3>
+<h3><%= title %></h3>
+<hr/>
+<!-- check for errors -->
+<% if (errors) { %>
+	<h5>Validation Error!</h5>
+	<ul>
+		<% errors.forEach((err) => { %>
+			<li><%= err.msg %></li>
+		<% }) %>
+	</ul>
+<% } %>
+
+<!-- form to create new user -->
+<b>User Add Form</b>
+<br/><br/>
+<form method='post' action='/users/add'>
+	<label>First Name</label>
+	<br/>
+	<input type='text' name='first_name'>
+	<br/>
+	<label>Last Name</label>
+	<br/>
+	<input type='text' name='last_name'>
+	<br/>
+	<label>Email</label>
+	<br/>
+	<input type='text' name='email'>
+	<br/><br/>
+	<input type='submit' value='Submit'>
+</form>
+<hr/>
+
+<!-- new user list -->
+<b>User List</b>
+<% if (users) { %>
+	<ul>
+		<% users.forEach((user) => { %>
+			<li><%= user.first_name %> <%= user.last_name %> (<%= user.email %>)</li>
+		<% }) %>
+	</ul>
+<% } %>
 <% include footer %>
